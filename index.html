@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    
+  crossorigin="anonymous">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+
+  <script src="js/imdb.js"></script>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+      <h1 class="display-3"> IMDB Movie Analysis</h1>
+      <p class="lead">By Fatih, Kaushik, Mary, Prasanna </p>
+      <img src="now showing.jpg" alt="Spongebob!" style="width:550px;height:300px;" />
+    </div>
+  </div>
+  
+  <div id="genreChartContainer" 
+  class="chartContainer">
+    <script type="text/javascript">
+
+      var start_year = 1950;
+
+      var end_year = 2016;
+      
+      var data_source = "http://localhost:8000/data/yearly_data.tsv";
+      var name = "IMDB Yearly Movie And Genre Counts (1950-2016)";
+            createGenreChart("#genreChartContainer",
+        data_source,
+        name,
+        start_year,
+        end_year);
+    </script>
+  </div>
+
+  <form class="form" id="genreToggleForm">
+    <div class="switch-field">
+      <!--   <div class="switch-title">Display Type</div> -->
+      <input type="radio" id="switch_left" name="switch" value="yes" checked />
+      <label for="switch_left">Counts</label>
+      <input type="radio" id="switch_right" name="switch" value="no" />
+      <label for="switch_right">Percents</label>
+    </div>
+  </form>
+
+  <br>
+  <div class="exposition">
+    
+      <font size="4"> This chart shows us the number of movie genre between 1950 - 2016, and absolute counts and percentage of releases, and also total number of movies in 1950-2016 years. </font>
+
+        </div>
+
+        <br>  <br>
+   <div id="lengthBinChartContainer" 
+   class="chartContainer">
+    <script type="text/javascript">
+      createHistChart
+      ("#lengthBinChartContainer",
+        "http://localhost:8000/data/length_data_hist.tsv",
+        true,
+        "IMDB Movie Length Distribution (2003-2013) ",
+        "length",
+        false,
+        "Length (minutes)");
+    </script>
+  </div>
+
+    <div class="exposition">
+      <font size="4"> This chart highlights short and middle length movies are watched with high percentage. This is because of the high number of movies produced in these two lengths. One of the reason is it is easier to reach and share short movies on social media and other electronic platforms. The other reason is people have the chance to watch it at their break times. 
+        </font>
+    
+        </div>
+
+        <br>
+
+  <div id="votesBinChartContainer" class="chartContainer">
+    <script type="text/javascript">
+      createHistChart("#votesBinChartContainer",
+        "http://localhost:8000/data/votes_data_hist.tsv",
+        true,
+        "IMDB Movie Vote # Distribution (2003-2013) ",
+        "votes",
+        true,
+        "IMDB User Vote Count");
+    </script>
+  </div>
+
+ 
+  <div class="exposition">
+      <font size="4"> This chart examines while the rating is an increasing percentage of voting decrease.  </font>
+
+        </div>
+
+        <br> <br>
+
+  <div id="budgetChartContainer" class="chartContainer">
+    <script type="text/javascript">
+      createLineChart("#budgetChartContainer",
+        "http://localhost:8000/data/budget_data.tsv",
+        true,
+        "IMDB Movie Budget Distribution (2003-2013) ",
+        "budget",
+        true,
+        "Budget (USD)",
+        "average");
+    </script>
+  </div>
+
+  <div class="exposition">
+      <font size="4"> As seen in this chart, the production percentage of the movies is approximately constant up to 10K budge. Its peak around 10 K budges and then decrease as the budget increase.
+        </font>
+
+    
+        </div>
+
+        <br><br>
+
+</body>
+
+</html>
